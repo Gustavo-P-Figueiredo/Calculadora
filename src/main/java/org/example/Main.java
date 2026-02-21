@@ -16,8 +16,8 @@ public class Main {
 
         int primeiroNumero;
         int segundoNumero;
-        int resultado = 0;
-        String operacao = "";
+        int resultado;
+        String operacao;
 
         do {
             System.out.println("Digite a operação desejada (+, -, *, /) ou '0' para encerrar: ");
