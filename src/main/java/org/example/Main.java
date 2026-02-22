@@ -10,78 +10,112 @@ package org.example;
 import java.util.Scanner;
 
 public class Main {
-    static void main() {
 
+    public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
+        int opcao;
 
-        int primeiroNumero;
-        int segundoNumero;
-        int resultado;
-        String operacao;
+        System.out.println("Escolha uma das opções");
+        System.out.println("Calculadora: 1");
+        System.out.println("Ultimos cinco resultados: 2");
+        System.out.println("Maior e menor resultados: 3");
+        System.out.println("Media de resultados: 4");
+        System.out.println("Sair: 5");
+        opcao = teclado.nextInt();
+        teclado.nextLine();
 
-        do {
-            System.out.println("Digite a operação desejada (+, -, *, /) ou '0' para encerrar: ");
-            operacao = teclado.nextLine();
+        switch (opcao) {
+            case 1:
+                calculadora();
+                break;
 
-            if (operacao.equals("+")) {
-                System.out.println("Digite o primeiro numero: ");
-                primeiroNumero = teclado.nextInt();
-                teclado.nextLine();
+            case 2:
+                resultado();
+                break;
 
-                System.out.println("Digite o segundo numero: ");
-                segundoNumero = teclado.nextInt();
-                teclado.nextLine();
+            case 3:
+                maiorEMenorResultado();
+                break;
 
-                resultado = primeiroNumero + segundoNumero;
+            case 4:
+                media();
+                break;
 
-                System.out.println("Resultado: " + resultado);
-
-            }
-
-            if (operacao.equals("-")) {
-                System.out.println("Digite o primeiro numero: ");
-                primeiroNumero = teclado.nextInt();
-
-                System.out.println("Digite o segundo numero: ");
-                segundoNumero = teclado.nextInt();
-
-                resultado = primeiroNumero - segundoNumero;
-
-                System.out.println("Resultado: " + resultado);
-            }
-
-            if (operacao.equals("*")) {
-                System.out.println("Digite o primeiro numero: ");
-                primeiroNumero = teclado.nextInt();
-                teclado.nextLine();
-
-                System.out.println("Digite o segundo numero: ");
-                segundoNumero = teclado.nextInt();
-                teclado.nextLine();
-
-                resultado = primeiroNumero * segundoNumero;
-
-                System.out.println("Resultado: " + resultado);
-            }
-
-            if (operacao.equals("/")) {
-                System.out.println("Digite o primeiro numero: ");
-                primeiroNumero = teclado.nextInt();
-                teclado.nextLine();
-
-                System.out.println("Digite o segundo numero: ");
-                segundoNumero = teclado.nextInt();
-                teclado.nextLine();
-
-                resultado = primeiroNumero / segundoNumero;
-
-                System.out.println("Resultado: " + resultado);
-            }
-
+            case 5:
+                System.out.println("Encerrando...");
+                break;
         }
 
-        while (!operacao.equals("0"));
     }
+            private static void calculadora() {
+                Scanner teclado = new Scanner(System.in);
 
-}
+                int primeiroNumero;
+                int segundoNumero;
+                int resultado;
+                String operacao;
 
+                {
+                    System.out.println("Digite a operação desejada (+, -, *, /) ou '0' para encerrar: ");
+                    operacao = teclado.nextLine();
+
+                    if (operacao.equals("+")) {
+                        System.out.println("Digite o primeiro numero: ");
+                        primeiroNumero = teclado.nextInt();
+                        teclado.nextLine();
+
+                        System.out.println("Digite o segundo numero: ");
+                        segundoNumero = teclado.nextInt();
+                        teclado.nextLine();
+
+                        resultado = primeiroNumero + segundoNumero;
+
+                        System.out.println("Resultado: " + resultado);
+
+                    }
+
+                    if (operacao.equals("-")) {
+                        System.out.println("Digite o primeiro numero: ");
+                        primeiroNumero = teclado.nextInt();
+
+                        System.out.println("Digite o segundo numero: ");
+                        segundoNumero = teclado.nextInt();
+
+                        resultado = primeiroNumero - segundoNumero;
+
+                        System.out.println("Resultado: " + resultado);
+                    }
+
+                    if (operacao.equals("*")) {
+                        System.out.println("Digite o primeiro numero: ");
+                        primeiroNumero = teclado.nextInt();
+                        teclado.nextLine();
+
+                        System.out.println("Digite o segundo numero: ");
+                        segundoNumero = teclado.nextInt();
+                        teclado.nextLine();
+
+                        resultado = primeiroNumero * segundoNumero;
+
+                        System.out.println("Resultado: " + resultado);
+                    }
+
+                    if (operacao.equals("/")) {
+                        System.out.println("Digite o primeiro numero: ");
+                        primeiroNumero = teclado.nextInt();
+                        teclado.nextLine();
+
+                        System.out.println("Digite o segundo numero: ");
+                        segundoNumero = teclado.nextInt();
+                        teclado.nextLine();
+
+                        resultado = primeiroNumero / segundoNumero;
+
+                        System.out.println("Resultado: " + resultado);
+                    }
+
+
+                    while (!operacao.equals("0")) ;
+                }
+            }
+        }
