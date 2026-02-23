@@ -7,12 +7,16 @@ package org.example;
  //Exibir a média entre os resultados
 //Fazer front
 
-import java.util.Scanner;
+import javax.annotation.processing.SupportedSourceVersion;
+import java.util.*;
 
 public class Main {
+    int resultado;
+    Scanner teclado = new Scanner(System.in);
+    Queue<Integer> ultimosResultado = new LinkedList<>();
 
-    public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
+
+    public void main() {
         int opcao;
 
         System.out.println("Escolha uma das opções");
@@ -30,15 +34,15 @@ public class Main {
                 break;
 
             case 2:
-                resultado();
+                historico();
                 break;
 
             case 3:
-                maiorEMenorResultado();
+                //maiorEMenorResultado();
                 break;
 
             case 4:
-                media();
+                //media();
                 break;
 
             case 5:
@@ -47,75 +51,105 @@ public class Main {
         }
 
     }
-            private static void calculadora() {
-                Scanner teclado = new Scanner(System.in);
 
-                int primeiroNumero;
-                int segundoNumero;
-                int resultado;
-                String operacao;
+    //Adicionar opção caso selecione opção diferente das disponiveis
+    private void calculadora() {
+        Scanner teclado = new Scanner(System.in);
 
-                {
-                    System.out.println("Digite a operação desejada (+, -, *, /) ou '0' para encerrar: ");
-                    operacao = teclado.nextLine();
+        int primeiroNumero;
+        int segundoNumero;
+        String operacao;
 
-                    if (operacao.equals("+")) {
-                        System.out.println("Digite o primeiro numero: ");
-                        primeiroNumero = teclado.nextInt();
-                        teclado.nextLine();
+        {
+            System.out.println("Digite a operação desejada (+, -, *, /) ou '0' para voltar ao menu: ");
+            operacao = teclado.nextLine();
 
-                        System.out.println("Digite o segundo numero: ");
-                        segundoNumero = teclado.nextInt();
-                        teclado.nextLine();
+            if (operacao.equals("+")) {
+                System.out.println("Digite o primeiro numero: ");
+                primeiroNumero = teclado.nextInt();
+                teclado.nextLine();
 
-                        resultado = primeiroNumero + segundoNumero;
+                System.out.println("Digite o segundo numero: ");
+                segundoNumero = teclado.nextInt();
+                teclado.nextLine();
 
-                        System.out.println("Resultado: " + resultado);
+                resultado = primeiroNumero + segundoNumero;
 
-                    }
+                System.out.println("Resultado: " + resultado);
+                ultimosResultado.add(resultado);
+                calculadora();
+            }
 
-                    if (operacao.equals("-")) {
-                        System.out.println("Digite o primeiro numero: ");
-                        primeiroNumero = teclado.nextInt();
+            if (operacao.equals("-")) {
+                System.out.println("Digite o primeiro numero: ");
+                primeiroNumero = teclado.nextInt();
 
-                        System.out.println("Digite o segundo numero: ");
-                        segundoNumero = teclado.nextInt();
+                System.out.println("Digite o segundo numero: ");
+                segundoNumero = teclado.nextInt();
 
-                        resultado = primeiroNumero - segundoNumero;
+                resultado = primeiroNumero - segundoNumero;
 
-                        System.out.println("Resultado: " + resultado);
-                    }
+                System.out.println("Resultado: " + resultado);
+                ultimosResultado.add(resultado);
+                calculadora();
+            }
 
-                    if (operacao.equals("*")) {
-                        System.out.println("Digite o primeiro numero: ");
-                        primeiroNumero = teclado.nextInt();
-                        teclado.nextLine();
+            if (operacao.equals("*")) {
+                System.out.println("Digite o primeiro numero: ");
+                primeiroNumero = teclado.nextInt();
+                teclado.nextLine();
 
-                        System.out.println("Digite o segundo numero: ");
-                        segundoNumero = teclado.nextInt();
-                        teclado.nextLine();
+                System.out.println("Digite o segundo numero: ");
+                segundoNumero = teclado.nextInt();
+                teclado.nextLine();
 
-                        resultado = primeiroNumero * segundoNumero;
+                resultado = primeiroNumero * segundoNumero;
 
-                        System.out.println("Resultado: " + resultado);
-                    }
+                System.out.println("Resultado: " + resultado);
+                ultimosResultado.add(resultado);
+                calculadora();
+            }
 
-                    if (operacao.equals("/")) {
-                        System.out.println("Digite o primeiro numero: ");
-                        primeiroNumero = teclado.nextInt();
-                        teclado.nextLine();
+            if (operacao.equals("/")) {
+                System.out.println("Digite o primeiro numero: ");
+                primeiroNumero = teclado.nextInt();
+                teclado.nextLine();
 
-                        System.out.println("Digite o segundo numero: ");
-                        segundoNumero = teclado.nextInt();
-                        teclado.nextLine();
+                System.out.println("Digite o segundo numero: ");
+                segundoNumero = teclado.nextInt();
+                teclado.nextLine();
 
-                        resultado = primeiroNumero / segundoNumero;
+                resultado = primeiroNumero / segundoNumero;
 
-                        System.out.println("Resultado: " + resultado);
-                    }
+                System.out.println("Resultado: " + resultado);
+                ultimosResultado.add(resultado);
+                calculadora();
+            }
 
-
-                    while (!operacao.equals("0")) ;
-                }
+            if (operacao.equals("0")) {
+                main();
             }
         }
+    }
+    //Bug ao ter somente um resultado no historico
+    //Analisar validador do limite
+    private void historico() {
+        int limite = 5;
+
+        if (ultimosResultado.isEmpty()) {
+            System.out.println("Não há resultados anteriores");
+             main();
+        }
+
+        if (resultado < limite) {
+            ultimosResultado.add(resultado);
+        }
+            else {
+                ultimosResultado.poll();
+        }
+                System.out.println("Ultimos resultados: " + ultimosResultado);
+                main();
+    }
+
+
+}
