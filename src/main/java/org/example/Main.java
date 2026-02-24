@@ -1,13 +1,12 @@
 package org.example;
 
 //Objetivos
- //Permitir as quatro operações basicas CHECK
+ //Permitir as quatro operações basicas *CHECK*
  //Armazenar em um vetor os ultimos cinco resultados
  //Exibir o maior e o menor numero entre os ultimos cinco resultados
  //Exibir a média entre os resultados
 //Fazer front
 
-import javax.annotation.processing.SupportedSourceVersion;
 import java.util.*;
 
 public class Main {
@@ -48,11 +47,16 @@ public class Main {
             case 5:
                 System.out.println("Encerrando...");
                 break;
-        }
 
+            default:
+                System.out.println("Opção inválida. Tente novamente.");
+                main();
+                break;
+        }
     }
 
-    //Adicionar opção caso selecione opção diferente das disponiveis
+
+    //Adicionar opção caso selecione opção diferente das disponiveis *CHECK*
     private void calculadora() {
         Scanner teclado = new Scanner(System.in);
 
@@ -64,73 +68,79 @@ public class Main {
             System.out.println("Digite a operação desejada (+, -, *, /) ou '0' para voltar ao menu: ");
             operacao = teclado.nextLine();
 
-            if (operacao.equals("+")) {
-                System.out.println("Digite o primeiro numero: ");
-                primeiroNumero = teclado.nextInt();
-                teclado.nextLine();
+            switch (operacao) {
 
-                System.out.println("Digite o segundo numero: ");
-                segundoNumero = teclado.nextInt();
-                teclado.nextLine();
+                case "+":
+                    System.out.println("Digite o primeiro numero: ");
+                    primeiroNumero = teclado.nextInt();
+                    teclado.nextLine();
 
-                resultado = primeiroNumero + segundoNumero;
+                    System.out.println("Digite o segundo numero: ");
+                    segundoNumero = teclado.nextInt();
+                    teclado.nextLine();
 
-                System.out.println("Resultado: " + resultado);
-                ultimosResultado.add(resultado);
-                calculadora();
+                    resultado = primeiroNumero + segundoNumero;
+
+                    System.out.println("Resultado: " + resultado);
+                    ultimosResultado.add(resultado);
+                    calculadora();
+
+                case "-":
+                    System.out.println("Digite o primeiro numero: ");
+                    primeiroNumero = teclado.nextInt();
+
+                    System.out.println("Digite o segundo numero: ");
+                    segundoNumero = teclado.nextInt();
+
+                    resultado = primeiroNumero - segundoNumero;
+
+                    System.out.println("Resultado: " + resultado);
+                    ultimosResultado.add(resultado);
+                    calculadora();
+
+                case "*":
+                    System.out.println("Digite o primeiro numero: ");
+                    primeiroNumero = teclado.nextInt();
+                    teclado.nextLine();
+
+                    System.out.println("Digite o segundo numero: ");
+                    segundoNumero = teclado.nextInt();
+                    teclado.nextLine();
+
+                    resultado = primeiroNumero * segundoNumero;
+
+                    System.out.println("Resultado: " + resultado);
+                    ultimosResultado.add(resultado);
+                    calculadora();
+
+                case "/":
+                    System.out.println("Digite o primeiro numero: ");
+                    primeiroNumero = teclado.nextInt();
+                    teclado.nextLine();
+
+                    System.out.println("Digite o segundo numero: ");
+                    segundoNumero = teclado.nextInt();
+                    teclado.nextLine();
+
+                    resultado = primeiroNumero / segundoNumero;
+
+                    System.out.println("Resultado: " + resultado);
+                    ultimosResultado.add(resultado);
+                    calculadora();
+
+                case "0":
+                    main();
+                    break;
+
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+                    calculadora();
             }
-
-            if (operacao.equals("-")) {
-                System.out.println("Digite o primeiro numero: ");
-                primeiroNumero = teclado.nextInt();
-
-                System.out.println("Digite o segundo numero: ");
-                segundoNumero = teclado.nextInt();
-
-                resultado = primeiroNumero - segundoNumero;
-
-                System.out.println("Resultado: " + resultado);
-                ultimosResultado.add(resultado);
-                calculadora();
-            }
-
-            if (operacao.equals("*")) {
-                System.out.println("Digite o primeiro numero: ");
-                primeiroNumero = teclado.nextInt();
-                teclado.nextLine();
-
-                System.out.println("Digite o segundo numero: ");
-                segundoNumero = teclado.nextInt();
-                teclado.nextLine();
-
-                resultado = primeiroNumero * segundoNumero;
-
-                System.out.println("Resultado: " + resultado);
-                ultimosResultado.add(resultado);
-                calculadora();
-            }
-
-            if (operacao.equals("/")) {
-                System.out.println("Digite o primeiro numero: ");
-                primeiroNumero = teclado.nextInt();
-                teclado.nextLine();
-
-                System.out.println("Digite o segundo numero: ");
-                segundoNumero = teclado.nextInt();
-                teclado.nextLine();
-
-                resultado = primeiroNumero / segundoNumero;
-
-                System.out.println("Resultado: " + resultado);
-                ultimosResultado.add(resultado);
-                calculadora();
-            }
-
-            if (operacao.equals("0")) {
-                main();
+            while (operacao != "0");
             }
         }
-    }
+
+
     //Bug ao ter somente um resultado no historico
     //Analisar validador do limite
     private void historico() {
@@ -141,7 +151,7 @@ public class Main {
              main();
         }
 
-        if (resultado < limite) {
+        if (ultimosResultado.size() < limite) {
             ultimosResultado.add(resultado);
         }
             else {
@@ -150,6 +160,5 @@ public class Main {
                 System.out.println("Ultimos resultados: " + ultimosResultado);
                 main();
     }
-
 
 }
