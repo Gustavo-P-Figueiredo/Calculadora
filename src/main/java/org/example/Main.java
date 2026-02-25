@@ -2,9 +2,10 @@ package org.example;
 
 //Objetivos
  //Permitir as quatro operações basicas *CHECK*
- //Armazenar em um vetor os ultimos cinco resultados
- //Exibir o maior e o menor numero entre os ultimos cinco resultados
- //Exibir a média entre os resultados
+ //Armazenar em um vetor os ultimos cinco resultados *CHECK*
+ //Permitir operações avançadas
+ //Permitir expressões matematicas
+ //Permitir conversão de valores
 //Fazer front
 
 import java.util.*;
@@ -37,14 +38,17 @@ public class Main {
                 break;
 
             case 3:
-                //maiorEMenorResultado();
+                calculadoraAvancada();
                 break;
 
             case 4:
-                //media();
+                //exprecoes();
                 break;
 
             case 5:
+                //conversor();
+
+            case 6:
                 System.out.println("Encerrando...");
                 break;
 
@@ -84,6 +88,7 @@ public class Main {
                     System.out.println("Resultado: " + resultado);
                     ultimosResultado.add(resultado);
                     calculadora();
+                    break;
 
                 case "-":
                     System.out.println("Digite o primeiro numero: ");
@@ -97,6 +102,7 @@ public class Main {
                     System.out.println("Resultado: " + resultado);
                     ultimosResultado.add(resultado);
                     calculadora();
+                    break;
 
                 case "*":
                     System.out.println("Digite o primeiro numero: ");
@@ -112,21 +118,28 @@ public class Main {
                     System.out.println("Resultado: " + resultado);
                     ultimosResultado.add(resultado);
                     calculadora();
+                    break;
 
                 case "/":
-                    System.out.println("Digite o primeiro numero: ");
+                    System.out.println("Digite o dividendo: ");
                     primeiroNumero = teclado.nextInt();
                     teclado.nextLine();
 
-                    System.out.println("Digite o segundo numero: ");
+                    System.out.println("Digite o divisor: ");
                     segundoNumero = teclado.nextInt();
                     teclado.nextLine();
 
-                    resultado = primeiroNumero / segundoNumero;
+                    try {
+                        resultado = primeiroNumero / segundoNumero;
 
-                    System.out.println("Resultado: " + resultado);
-                    ultimosResultado.add(resultado);
-                    calculadora();
+                        System.out.println("Resultado: " + resultado);
+                        ultimosResultado.add(resultado);
+                        calculadora();
+                        break;
+
+                    } catch (ArithmeticException e) {
+                        System.out.println("Divisão por 0 não é permitido");
+                    }
 
                 case "0":
                     main();
@@ -141,8 +154,8 @@ public class Main {
         }
 
 
-    //Bug ao ter somente um resultado no historico
-    //Analisar validador do limite
+    //Bug ao ter somente um resultado no historico *CHECK*
+    //Analisar validador do limite *CHECK*
     private void historico() {
         int limite = 5;
 
@@ -151,14 +164,43 @@ public class Main {
              main();
         }
 
-        if (ultimosResultado.size() < limite) {
-            ultimosResultado.add(resultado);
+        if (ultimosResultado.size() <= limite) {
         }
             else {
                 ultimosResultado.poll();
         }
                 System.out.println("Ultimos resultados: " + ultimosResultado);
                 main();
+    }
+
+    private void calculadoraAvancada() {
+        String operacao;
+        int primeiroNumero;
+        int segundoNumero;
+        int resultado;
+
+        System.out.println("igite a operação desejada (potencia, porcentagem, raiz) ou 0 para voltar ao menu: ");
+        operacao = teclado.nextLine();
+
+        switch (operacao) {
+
+            case "potencia":
+
+
+            case "porcentagem":
+
+
+            case "raiz":
+
+            case "0":
+                main();
+                break;
+
+            default:
+                System.out.println("Opção inválida. Tente novamente.");
+                calculadora();
+        }
+
     }
 
 }
