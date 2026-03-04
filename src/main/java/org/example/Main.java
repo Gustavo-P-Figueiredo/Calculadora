@@ -3,7 +3,7 @@ package org.example;
 //Objetivos
  //Permitir as quatro operações basicas *CHECK*
  //Armazenar em um vetor os ultimos cinco resultados *CHECK*
- //Permitir operações avançadas
+ //Permitir operações avançadas *CHECK*
  //Permitir expressões matematicas
  //Permitir conversão de valores
 //Fazer front
@@ -11,7 +11,7 @@ package org.example;
 import java.util.*;
 
 public class Main {
-    int resultado;
+    public int resultado;
     Scanner teclado = new Scanner(System.in);
     Queue<Integer> ultimosResultado = new LinkedList<>();
 
@@ -22,7 +22,7 @@ public class Main {
         System.out.println("Escolha uma das opções");
         System.out.println("Calculadora: 1");
         System.out.println("Ultimos cinco resultados: 2");
-        System.out.println("Maior e menor resultados: 3");
+        System.out.println("Calculadora avançada: 3");
         System.out.println("Media de resultados: 4");
         System.out.println("Sair: 5");
         opcao = teclado.nextInt();
@@ -129,7 +129,7 @@ public class Main {
                     segundoNumero = teclado.nextInt();
                     teclado.nextLine();
 
-                    try {
+                     try {
                         resultado = primeiroNumero / segundoNumero;
 
                         System.out.println("Resultado: " + resultado);
@@ -159,18 +159,18 @@ public class Main {
     private void historico() {
         int limite = 5;
 
-        if (ultimosResultado.isEmpty()) {
+            if (ultimosResultado.isEmpty()) {
             System.out.println("Não há resultados anteriores");
              main();
-        }
+            }
 
-        if (ultimosResultado.size() <= limite) {
-        }
-            else {
+            if (ultimosResultado.size() <= limite) {}
+                else {
                 ultimosResultado.poll();
-        }
-                System.out.println("Ultimos resultados: " + ultimosResultado);
-                main();
+                }
+
+            System.out.println("Ultimos resultados: " + ultimosResultado);
+            main();
     }
 
     private void calculadoraAvancada() {
@@ -179,18 +179,52 @@ public class Main {
         int segundoNumero;
         int resultado;
 
-        System.out.println("igite a operação desejada (potencia, porcentagem, raiz) ou 0 para voltar ao menu: ");
+        System.out.println("Digite a operação desejada (potencia, porcentagem, raiz) ou 0 para voltar ao menu: ");
         operacao = teclado.nextLine();
 
         switch (operacao) {
 
             case "potencia":
+                System.out.println("Digite o numero base: ");
+                primeiroNumero = teclado.nextInt();
+                teclado.nextLine();
 
+                System.out.println("Digite o numero exponente: ");
+                segundoNumero = teclado.nextInt();
+                teclado.nextLine();
+
+
+                    resultado = Math.powExact(primeiroNumero, segundoNumero);
+                    System.out.println("Resultado: " + resultado);
+                    ultimosResultado.add(resultado);
+                    calculadoraAvancada();
+                    break;
 
             case "porcentagem":
+                System.out.println("Insira a porcentagem desejada: ");
+                primeiroNumero = teclado.nextInt();
+                teclado.nextLine();
 
+                System.out.println("Insira o valor total: ");
+                segundoNumero = teclado.nextInt();
+                teclado.nextLine();
+
+                    resultado = (primeiroNumero * segundoNumero) / 100;
+                    System.out.println("Resultado: " + resultado);
+                    ultimosResultado.add(resultado);
+                    calculadoraAvancada();
+                    break;
 
             case "raiz":
+                System.out.println("Digite a raiz que deseja encontrar: ");
+                primeiroNumero = teclado.nextInt();
+                teclado.nextLine();
+
+                    resultado = (int) Math.sqrt(primeiroNumero);
+                    System.out.println("Resultado: " + resultado);
+                    ultimosResultado.add(resultado);
+                    calculadoraAvancada();
+                    break;
 
             case "0":
                 main();
