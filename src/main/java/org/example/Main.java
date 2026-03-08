@@ -1,4 +1,6 @@
 package org.example;
+import java.util.Scanner;
+import org.example.Operações.Operacoes;
 
 //Objetivos
  //Permitir as quatro operações basicas *CHECK*
@@ -7,6 +9,8 @@ package org.example;
  //Permitir expressões matematicas
  //Permitir conversão de valores
 //Fazer front
+
+import org.example.Operações.PegarValores;
 
 import java.util.*;
 
@@ -23,8 +27,9 @@ public class Main {
         System.out.println("Calculadora: 1");
         System.out.println("Ultimos cinco resultados: 2");
         System.out.println("Calculadora avançada: 3");
-        System.out.println("Media de resultados: 4");
-        System.out.println("Sair: 5");
+        System.out.println("Expreções matematicas: 4");
+        System.out.println("Conversor de valores: 5");
+        System.out.println("Sair: 6");
         opcao = teclado.nextInt();
         teclado.nextLine();
 
@@ -42,7 +47,7 @@ public class Main {
                 break;
 
             case 4:
-                //exprecoes();
+                exprecoes();
                 break;
 
             case 5:
@@ -75,71 +80,60 @@ public class Main {
             switch (operacao) {
 
                 case "+":
-                    System.out.println("Digite o primeiro numero: ");
-                    primeiroNumero = teclado.nextInt();
-                    teclado.nextLine();
+                    PegarValores soma = new PegarValores();
 
-                    System.out.println("Digite o segundo numero: ");
-                    segundoNumero = teclado.nextInt();
-                    teclado.nextLine();
+                    List<Integer> valoresSoma = soma.pegarValores();
 
-                    resultado = primeiroNumero + segundoNumero;
+                    Operacoes operacaoSoma = new Operacoes();
 
-                    System.out.println("Resultado: " + resultado);
+                    int resultado = operacaoSoma.soma(valoresSoma);
+
+                    System.out.println("Resultado da soma: " + resultado);
                     ultimosResultado.add(resultado);
                     calculadora();
                     break;
 
                 case "-":
-                    System.out.println("Digite o primeiro numero: ");
-                    primeiroNumero = teclado.nextInt();
+                    PegarValores subtracao = new PegarValores();
 
-                    System.out.println("Digite o segundo numero: ");
-                    segundoNumero = teclado.nextInt();
+                    List<Integer> valoresSubtracao = subtracao.pegarValores();
 
-                    resultado = primeiroNumero - segundoNumero;
+                    Operacoes operacaoSubtracao = new Operacoes();
 
-                    System.out.println("Resultado: " + resultado);
+                    resultado = operacaoSubtracao.subtracao(valoresSubtracao);
+
+                    System.out.println("Resultado da subtração: " + resultado);
                     ultimosResultado.add(resultado);
                     calculadora();
                     break;
 
                 case "*":
-                    System.out.println("Digite o primeiro numero: ");
-                    primeiroNumero = teclado.nextInt();
-                    teclado.nextLine();
+                    PegarValores multiplicacao = new PegarValores();
 
-                    System.out.println("Digite o segundo numero: ");
-                    segundoNumero = teclado.nextInt();
-                    teclado.nextLine();
+                    List<Integer> valoresMultiplicacao = multiplicacao.pegarValores();
 
-                    resultado = primeiroNumero * segundoNumero;
+                    Operacoes operacaoMultiplicacao = new Operacoes();
 
-                    System.out.println("Resultado: " + resultado);
+                    resultado = operacaoMultiplicacao.multiplicacao(valoresMultiplicacao);
+
+                    System.out.println("Resultado da multiplicacao: " + resultado);
                     ultimosResultado.add(resultado);
                     calculadora();
                     break;
 
                 case "/":
-                    System.out.println("Digite o dividendo: ");
-                    primeiroNumero = teclado.nextInt();
-                    teclado.nextLine();
+                    PegarValores divisao = new PegarValores();
 
-                    System.out.println("Digite o divisor: ");
-                    segundoNumero = teclado.nextInt();
-                    teclado.nextLine();
+                    List<Integer> valoresDivisao = divisao.pegarValores();
 
-                     try {
-                        resultado = primeiroNumero / segundoNumero;
+                    Operacoes operacaoDivisao = new Operacoes();
 
-                        System.out.println("Resultado: " + resultado);
-                        ultimosResultado.add(resultado);
-                        calculadora();
-                        break;
+                    resultado = operacaoDivisao.divisao(valoresDivisao);
 
-                    } catch (ArithmeticException e) {
-                        System.out.println("Divisão por 0 não é permitido");
-                    }
+                    System.out.println("Resultado da divisao: " + resultado);
+                    ultimosResultado.add(resultado);
+                    calculadora();
+                    break;
 
                 case "0":
                     main();
@@ -234,6 +228,13 @@ public class Main {
                 System.out.println("Opção inválida. Tente novamente.");
                 calculadora();
         }
+    }
+
+    private void exprecoes() {
+    String exprecao;
+
+        System.out.println("Digite a expressão matematica: ");
+        exprecao = teclado.nextLine();
 
     }
 
