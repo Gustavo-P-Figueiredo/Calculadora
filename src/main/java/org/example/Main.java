@@ -1,5 +1,7 @@
 package org.example;
 import java.util.Scanner;
+
+import org.example.Historico.Historico;
 import org.example.Operações.Operacoes;
 
 //Objetivos
@@ -17,7 +19,7 @@ import java.util.*;
 public class Main {
     public int resultado;
     Scanner teclado = new Scanner(System.in);
-    Queue<Integer> ultimosResultado = new LinkedList<>();
+    Historico historico = new Historico();
 
 
     public void main() {
@@ -81,57 +83,49 @@ public class Main {
 
                 case "+":
                     PegarValores soma = new PegarValores();
-
                     List<Integer> valoresSoma = soma.pegarValores();
 
                     Operacoes operacaoSoma = new Operacoes();
-
-                    int resultado = operacaoSoma.soma(valoresSoma);
+                    resultado = operacaoSoma.soma(valoresSoma);
 
                     System.out.println("Resultado da soma: " + resultado);
-                    ultimosResultado.add(resultado);
+                    historico.salvarResultado(resultado);
                     calculadora();
                     break;
 
                 case "-":
                     PegarValores subtracao = new PegarValores();
-
                     List<Integer> valoresSubtracao = subtracao.pegarValores();
 
                     Operacoes operacaoSubtracao = new Operacoes();
-
                     resultado = operacaoSubtracao.subtracao(valoresSubtracao);
 
                     System.out.println("Resultado da subtração: " + resultado);
-                    ultimosResultado.add(resultado);
+                    historico.salvarResultado(resultado);
                     calculadora();
                     break;
 
                 case "*":
                     PegarValores multiplicacao = new PegarValores();
-
                     List<Integer> valoresMultiplicacao = multiplicacao.pegarValores();
 
                     Operacoes operacaoMultiplicacao = new Operacoes();
-
                     resultado = operacaoMultiplicacao.multiplicacao(valoresMultiplicacao);
 
                     System.out.println("Resultado da multiplicacao: " + resultado);
-                    ultimosResultado.add(resultado);
+                    historico.salvarResultado(resultado);
                     calculadora();
                     break;
 
                 case "/":
                     PegarValores divisao = new PegarValores();
-
                     List<Integer> valoresDivisao = divisao.pegarValores();
 
                     Operacoes operacaoDivisao = new Operacoes();
-
                     resultado = operacaoDivisao.divisao(valoresDivisao);
 
                     System.out.println("Resultado da divisao: " + resultado);
-                    ultimosResultado.add(resultado);
+                    historico.salvarResultado(resultado);
                     calculadora();
                     break;
 
@@ -147,24 +141,10 @@ public class Main {
             }
         }
 
-
-    //Bug ao ter somente um resultado no historico *CHECK*
-    //Analisar validador do limite *CHECK*
     private void historico() {
-        int limite = 5;
 
-            if (ultimosResultado.isEmpty()) {
-            System.out.println("Não há resultados anteriores");
-             main();
-            }
-
-            if (ultimosResultado.size() <= limite) {}
-                else {
-                ultimosResultado.poll();
-                }
-
-            System.out.println("Ultimos resultados: " + ultimosResultado);
-            main();
+        historico.mostrarHistorico(resultado);
+        main();
     }
 
     private void calculadoraAvancada() {
@@ -190,7 +170,7 @@ public class Main {
 
                     resultado = Math.powExact(primeiroNumero, segundoNumero);
                     System.out.println("Resultado: " + resultado);
-                    ultimosResultado.add(resultado);
+                    //ultimosResultado.add(resultado);
                     calculadoraAvancada();
                     break;
 
@@ -205,7 +185,7 @@ public class Main {
 
                     resultado = (primeiroNumero * segundoNumero) / 100;
                     System.out.println("Resultado: " + resultado);
-                    ultimosResultado.add(resultado);
+                    //ultimosResultado.add(resultado);
                     calculadoraAvancada();
                     break;
 
@@ -216,7 +196,7 @@ public class Main {
 
                     resultado = (int) Math.sqrt(primeiroNumero);
                     System.out.println("Resultado: " + resultado);
-                    ultimosResultado.add(resultado);
+                    //ultimosResultado.add(resultado);
                     calculadoraAvancada();
                     break;
 

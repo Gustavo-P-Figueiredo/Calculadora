@@ -22,13 +22,17 @@ public class Operacoes {
     }
 
     public int divisao(List<Integer> valores) {
+        int resultado = 0;
+
         try {
-            int resultado = valores.stream().mapToInt(valor -> valor).reduce((a, b) -> a / b)
-                    .orElse((int) 0.0);
-            }
-        catch (ArithmeticException e) {
+            resultado = valores.stream()
+                    .mapToInt(valor -> valor)
+                    .reduce((a, b) -> a / b)
+                    .orElse(0);
+        } catch (ArithmeticException e) {
             System.out.println("Divisão por 0 não é permitido");
         }
+
         return resultado;
     }
 }
