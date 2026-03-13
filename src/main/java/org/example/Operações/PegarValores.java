@@ -19,4 +19,31 @@ public class PegarValores {
 
     return valores;
     }
+
+    public List<Integer> pegarValoresPotencia() {
+        List<Integer> valoresPotencia = new ArrayList<>();
+
+        System.out.println("Digite o numero base: ");
+        int numero = teclado.nextInt();
+        valoresPotencia.add(numero);
+        System.out.println("Digite o numero exponente: ");
+        numero = teclado.nextInt();
+        valoresPotencia.add(numero);
+
+        return valoresPotencia;
+    }
+
+    public List<Integer> pegarValoresPorcentagem() {
+        List<Integer> valoresPorcentagem = new ArrayList<>();
+
+        System.out.println("Insira a porcentagem desejada: ");
+        int numero = teclado.nextInt();
+        valoresPorcentagem.add(numero);
+        System.out.println("Insira o valor total: ");
+        numero = teclado.nextInt();
+        valoresPorcentagem.add(numero);
+
+    return valoresPorcentagem;
+    }
+
 }

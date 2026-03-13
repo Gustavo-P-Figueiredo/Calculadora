@@ -159,35 +159,28 @@ public class Main {
         switch (operacao) {
 
             case "potencia":
-                System.out.println("Digite o numero base: ");
-                primeiroNumero = teclado.nextInt();
-                teclado.nextLine();
+                PegarValores potencia = new PegarValores();
+                List<Integer> valoresPotencia = potencia.pegarValores();
 
-                System.out.println("Digite o numero exponente: ");
-                segundoNumero = teclado.nextInt();
-                teclado.nextLine();
+                Operacoes operacaoPotencia = new Operacoes();
+                resultado = operacaoPotencia.potencia(valoresPotencia);
 
-
-                    resultado = Math.powExact(primeiroNumero, segundoNumero);
-                    System.out.println("Resultado: " + resultado);
-                    //ultimosResultado.add(resultado);
+                System.out.println("Resultado: " + resultado);
+                historico.salvarResultado(resultado);
                     calculadoraAvancada();
                     break;
 
             case "porcentagem":
-                System.out.println("Insira a porcentagem desejada: ");
-                primeiroNumero = teclado.nextInt();
-                teclado.nextLine();
+                PegarValores porcentagem = new PegarValores();
+                List<Integer> valoresPorcentagem = porcentagem.pegarValores();
 
-                System.out.println("Insira o valor total: ");
-                segundoNumero = teclado.nextInt();
-                teclado.nextLine();
+                Operacoes operacaoPorcentagem = new Operacoes();
+                resultado = operacaoPorcentagem.porcentagem(valoresPorcentagem);
 
-                    resultado = (primeiroNumero * segundoNumero) / 100;
-                    System.out.println("Resultado: " + resultado);
-                    //ultimosResultado.add(resultado);
-                    calculadoraAvancada();
-                    break;
+                System.out.println(resultado + "%");
+                historico.salvarResultado(resultado);
+                calculadoraAvancada();
+                break;
 
             case "raiz":
                 System.out.println("Digite a raiz que deseja encontrar: ");
