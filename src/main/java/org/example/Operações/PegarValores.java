@@ -46,4 +46,12 @@ public class PegarValores {
     return valoresPorcentagem;
     }
 
+    public int pegarValorRaiz() {
+
+        System.out.println("Insira o valor raiz: ");
+        int valorRaiz = teclado.nextInt();
+
+        return valorRaiz;
+    }
+
 }

@@ -47,9 +47,17 @@ public class Operacoes {
     }
 
     public int porcentagem(List<Integer> valoresPorcentagem) {
-        int resultado = valoresPorcentagem.stream()
-                .mapToInt(valor -> valor)
-                .reduce(1, (a, b) -> (a * b) / 100);
+        int porcentagem = valoresPorcentagem.get(0);
+
+        return valoresPorcentagem.stream()
+                .skip(1)
+                .mapToInt(valor -> (valor * porcentagem) / 100)
+                .findFirst()
+                .orElse(0);
+    }
+
+    public int raiz(int valorRaiz) {
+        int resultado = (int) Math.sqrt(valorRaiz);
         return resultado;
     }
 

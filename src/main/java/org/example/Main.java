@@ -20,6 +20,8 @@ public class Main {
     public int resultado;
     Scanner teclado = new Scanner(System.in);
     Historico historico = new Historico();
+    PegarValores pegarValores = new PegarValores();
+    Operacoes operacoes = new Operacoes();
 
 
     public void main() {
@@ -160,38 +162,39 @@ public class Main {
 
             case "potencia":
                 PegarValores potencia = new PegarValores();
-                List<Integer> valoresPotencia = potencia.pegarValores();
+                List<Integer> valoresPotencia = potencia.pegarValoresPotencia();
 
                 Operacoes operacaoPotencia = new Operacoes();
                 resultado = operacaoPotencia.potencia(valoresPotencia);
 
-                System.out.println("Resultado: " + resultado);
+                System.out.println("Resutado da potencia: " + resultado);
                 historico.salvarResultado(resultado);
                     calculadoraAvancada();
                     break;
 
             case "porcentagem":
                 PegarValores porcentagem = new PegarValores();
-                List<Integer> valoresPorcentagem = porcentagem.pegarValores();
+                List<Integer> valoresPorcentagem = porcentagem.pegarValoresPorcentagem();
 
                 Operacoes operacaoPorcentagem = new Operacoes();
                 resultado = operacaoPorcentagem.porcentagem(valoresPorcentagem);
 
-                System.out.println(resultado + "%");
+                System.out.println("Resultado da porcentagem : " + resultado);
                 historico.salvarResultado(resultado);
                 calculadoraAvancada();
                 break;
 
             case "raiz":
-                System.out.println("Digite a raiz que deseja encontrar: ");
-                primeiroNumero = teclado.nextInt();
-                teclado.nextLine();
+                PegarValores raiz = new PegarValores();
+                int valorRaiz = raiz.pegarValorRaiz();
 
-                    resultado = (int) Math.sqrt(primeiroNumero);
-                    System.out.println("Resultado: " + resultado);
-                    //ultimosResultado.add(resultado);
-                    calculadoraAvancada();
-                    break;
+                Operacoes operacaoRaiz = new Operacoes();
+                resultado = operacaoRaiz.raiz(valorRaiz);
+
+                System.out.println("Resultado da raiz: " + resultado);
+                historico.salvarResultado(resultado);
+                calculadora();
+                break;
 
             case "0":
                 main();
@@ -199,7 +202,7 @@ public class Main {
 
             default:
                 System.out.println("Opção inválida. Tente novamente.");
-                calculadora();
+                calculadoraAvancada();
         }
     }
 
