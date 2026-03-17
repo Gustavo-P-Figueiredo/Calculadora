@@ -2,7 +2,7 @@ package org.example.Operações;
 
 import java.util.List;
 
-public class Operacoes {
+public class CalcularOperacoes {
 
     public int soma(List<Integer> valores) {
         int resultado = valores.stream()

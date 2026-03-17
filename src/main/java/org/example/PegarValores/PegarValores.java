@@ -1,4 +1,4 @@
-package org.example.Operações;
+package org.example.PegarValores;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,8 @@ package org.example;
 import java.util.Scanner;
 
 import org.example.Historico.Historico;
-import org.example.Operações.Operacoes;
+import org.example.Operacoes.CalcularExpressao;
+import org.example.Operações.CalcularOperacoes;
 
 //Objetivos
  //Permitir as quatro operações basicas *CHECK*
@@ -12,7 +13,8 @@ import org.example.Operações.Operacoes;
  //Permitir conversão de valores
 //Fazer front
 
-import org.example.Operações.PegarValores;
+import org.example.PegarValores.PegarExpressao;
+import org.example.PegarValores.PegarValores;
 
 import java.util.*;
 
@@ -21,7 +23,7 @@ public class Main {
     Scanner teclado = new Scanner(System.in);
     Historico historico = new Historico();
     PegarValores pegarValores = new PegarValores();
-    Operacoes operacoes = new Operacoes();
+    CalcularOperacoes operacoes = new CalcularOperacoes();
 
 
     public void main() {
@@ -51,7 +53,7 @@ public class Main {
                 break;
 
             case 4:
-                exprecoes();
+                expressoes();
                 break;
 
             case 5:
@@ -87,7 +89,7 @@ public class Main {
                     PegarValores soma = new PegarValores();
                     List<Integer> valoresSoma = soma.pegarValores();
 
-                    Operacoes operacaoSoma = new Operacoes();
+                    CalcularOperacoes operacaoSoma = new CalcularOperacoes();
                     resultado = operacaoSoma.soma(valoresSoma);
 
                     System.out.println("Resultado da soma: " + resultado);
@@ -99,7 +101,7 @@ public class Main {
                     PegarValores subtracao = new PegarValores();
                     List<Integer> valoresSubtracao = subtracao.pegarValores();
 
-                    Operacoes operacaoSubtracao = new Operacoes();
+                    CalcularOperacoes operacaoSubtracao = new CalcularOperacoes();
                     resultado = operacaoSubtracao.subtracao(valoresSubtracao);
 
                     System.out.println("Resultado da subtração: " + resultado);
@@ -111,7 +113,7 @@ public class Main {
                     PegarValores multiplicacao = new PegarValores();
                     List<Integer> valoresMultiplicacao = multiplicacao.pegarValores();
 
-                    Operacoes operacaoMultiplicacao = new Operacoes();
+                    CalcularOperacoes operacaoMultiplicacao = new CalcularOperacoes();
                     resultado = operacaoMultiplicacao.multiplicacao(valoresMultiplicacao);
 
                     System.out.println("Resultado da multiplicacao: " + resultado);
@@ -123,7 +125,7 @@ public class Main {
                     PegarValores divisao = new PegarValores();
                     List<Integer> valoresDivisao = divisao.pegarValores();
 
-                    Operacoes operacaoDivisao = new Operacoes();
+                    CalcularOperacoes operacaoDivisao = new CalcularOperacoes();
                     resultado = operacaoDivisao.divisao(valoresDivisao);
 
                     System.out.println("Resultado da divisao: " + resultado);
@@ -164,7 +166,7 @@ public class Main {
                 PegarValores potencia = new PegarValores();
                 List<Integer> valoresPotencia = potencia.pegarValoresPotencia();
 
-                Operacoes operacaoPotencia = new Operacoes();
+                CalcularOperacoes operacaoPotencia = new CalcularOperacoes();
                 resultado = operacaoPotencia.potencia(valoresPotencia);
 
                 System.out.println("Resutado da potencia: " + resultado);
@@ -176,7 +178,7 @@ public class Main {
                 PegarValores porcentagem = new PegarValores();
                 List<Integer> valoresPorcentagem = porcentagem.pegarValoresPorcentagem();
 
-                Operacoes operacaoPorcentagem = new Operacoes();
+                CalcularOperacoes operacaoPorcentagem = new CalcularOperacoes();
                 resultado = operacaoPorcentagem.porcentagem(valoresPorcentagem);
 
                 System.out.println("Resultado da porcentagem : " + resultado);
@@ -188,7 +190,7 @@ public class Main {
                 PegarValores raiz = new PegarValores();
                 int valorRaiz = raiz.pegarValorRaiz();
 
-                Operacoes operacaoRaiz = new Operacoes();
+                CalcularOperacoes operacaoRaiz = new CalcularOperacoes();
                 resultado = operacaoRaiz.raiz(valorRaiz);
 
                 System.out.println("Resultado da raiz: " + resultado);
@@ -206,12 +208,18 @@ public class Main {
         }
     }
 
-    private void exprecoes() {
-    String exprecao;
+    private void expressoes() {
 
-        System.out.println("Digite a expressão matematica: ");
-        exprecao = teclado.nextLine();
+        PegarExpressao pegarExpressao = new PegarExpressao();
+        CalcularExpressao calcular = new CalcularExpressao();
 
+        String expressao = pegarExpressao.expressao();
+
+        int resultado = calcular.calcular(expressao);
+
+        System.out.println("Resultado: " + resultado);
+        historico.salvarResultado(resultado);
+        expressoes();
     }
 
 }
