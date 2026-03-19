@@ -6,6 +6,6 @@ Desenvolver um projeto simples de operações em uma calculadora, nas seguintes 
 ### Objetivos
 Permitir as quatro operações basicas (Adição, subtração, multiplicação e divisão) :white_check_mark:
 Armazenar os ultimos cinco resultados :white_check_mark:
-Permitir operações avançadas :soon:
-Permitir expressões matematicas :soon:
+Permitir operações avançadas :white_check_mark:
+Permitir expressões matematicas :white_check_mark:
 Permitir conversão de valores :soon:

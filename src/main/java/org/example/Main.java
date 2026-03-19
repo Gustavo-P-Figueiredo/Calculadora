@@ -3,17 +3,11 @@ import java.util.Scanner;
 
 import org.example.Historico.Historico;
 import org.example.Operacoes.CalcularExpressao;
-import org.example.Operações.CalcularOperacoes;
+import org.example.Operacoes.CalcularOperacoes;
 
-//Objetivos
- //Permitir as quatro operações basicas *CHECK*
- //Armazenar em um vetor os ultimos cinco resultados *CHECK*
- //Permitir operações avançadas *CHECK*
- //Permitir expressões matematicas
- //Permitir conversão de valores
-//Fazer front
-
+import org.example.Operacoes.Conversor;
 import org.example.PegarValores.PegarExpressao;
+import org.example.PegarValores.PegarValorConversor;
 import org.example.PegarValores.PegarValores;
 
 import java.util.*;
@@ -57,7 +51,7 @@ public class Main {
                 break;
 
             case 5:
-                //conversor();
+                conversor();
 
             case 6:
                 System.out.println("Encerrando...");
@@ -74,18 +68,23 @@ public class Main {
     //Adicionar opção caso selecione opção diferente das disponiveis *CHECK*
     private void calculadora() {
         Scanner teclado = new Scanner(System.in);
-
-        int primeiroNumero;
-        int segundoNumero;
         String operacao;
 
         {
-            System.out.println("Digite a operação desejada (+, -, *, /) ou '0' para voltar ao menu: ");
+            System.out.println("""
+        ===Calculadora===
+        Digite a operação desejada ou 0 para voltar ao menu: 
+        1 - Soma
+        2 - Subtração
+        3 - Multiplicação
+        4 - Divisão
+        0 - Voltar ao menu
+        """);
             operacao = teclado.nextLine();
 
             switch (operacao) {
 
-                case "+":
+                case "1":
                     PegarValores soma = new PegarValores();
                     List<Integer> valoresSoma = soma.pegarValores();
 
@@ -97,7 +96,7 @@ public class Main {
                     calculadora();
                     break;
 
-                case "-":
+                case "2":
                     PegarValores subtracao = new PegarValores();
                     List<Integer> valoresSubtracao = subtracao.pegarValores();
 
@@ -109,7 +108,7 @@ public class Main {
                     calculadora();
                     break;
 
-                case "*":
+                case "3":
                     PegarValores multiplicacao = new PegarValores();
                     List<Integer> valoresMultiplicacao = multiplicacao.pegarValores();
 
@@ -121,7 +120,7 @@ public class Main {
                     calculadora();
                     break;
 
-                case "/":
+                case "4":
                     PegarValores divisao = new PegarValores();
                     List<Integer> valoresDivisao = divisao.pegarValores();
 
@@ -141,9 +140,9 @@ public class Main {
                     System.out.println("Opção inválida. Tente novamente.");
                     calculadora();
             }
-            while (operacao != "0");
-            }
+            while (operacao != "0") ;
         }
+    }
 
     private void historico() {
 
@@ -153,16 +152,21 @@ public class Main {
 
     private void calculadoraAvancada() {
         String operacao;
-        int primeiroNumero;
-        int segundoNumero;
         int resultado;
 
-        System.out.println("Digite a operação desejada (potencia, porcentagem, raiz) ou 0 para voltar ao menu: ");
+        System.out.println("""
+        ===Calculadora avançada===
+        Digite a operação desejada ou 0 para voltar ao menu: 
+        1 - Potencia
+        2 - Porcentagem
+        3 - Raiz
+        0 - Voltar ao menu
+        """);
         operacao = teclado.nextLine();
 
         switch (operacao) {
 
-            case "potencia":
+            case "1":
                 PegarValores potencia = new PegarValores();
                 List<Integer> valoresPotencia = potencia.pegarValoresPotencia();
 
@@ -171,10 +175,10 @@ public class Main {
 
                 System.out.println("Resutado da potencia: " + resultado);
                 historico.salvarResultado(resultado);
-                    calculadoraAvancada();
-                    break;
+                calculadoraAvancada();
+                break;
 
-            case "porcentagem":
+            case "2":
                 PegarValores porcentagem = new PegarValores();
                 List<Integer> valoresPorcentagem = porcentagem.pegarValoresPorcentagem();
 
@@ -186,7 +190,7 @@ public class Main {
                 calculadoraAvancada();
                 break;
 
-            case "raiz":
+            case "3":
                 PegarValores raiz = new PegarValores();
                 int valorRaiz = raiz.pegarValorRaiz();
 
@@ -222,4 +226,46 @@ public class Main {
         expressoes();
     }
 
+
+    private void conversor() {
+        String operacao;
+
+        System.out.println("""
+        ===CONVERSOR===
+        Digite a operação desejada ou 0 para voltar ao menu: 
+        1 - Decimal para binario
+        2 - Binario para decimal
+        3 - Decimal para hexadecimal
+        4 - Hexadecimal para binario
+        0 - Voltar ao menu
+        """);
+        operacao = teclado.nextLine();
+
+        switch (operacao) {
+
+            case "1":
+                PegarValorConversor pegarDecimal = new PegarValorConversor();
+                Conversor conversorParaBinario = new Conversor();
+
+                String resultadoBinario = conversorParaBinario.converterParaBinario();
+                historico.salvarResultado(resultado);
+                conversor();
+                break;
+
+            case "2":
+                PegarValorConversor pegarBinario = new PegarValorConversor();
+                Conversor conversorParaDecimal = new Conversor();
+
+                int resultadoDecimal = conversorParaDecimal.converterParaDecimal();
+                historico.salvarResultado(resultado);
+                conversor();
+                break;
+
+            case "3":
+
+
+            case "4":
+
+        }
+    }
 }

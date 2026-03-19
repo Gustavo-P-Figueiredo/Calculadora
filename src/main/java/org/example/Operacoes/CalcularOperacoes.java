@@ -1,4 +1,4 @@
-package org.example.Operações;
+package org.example.Operacoes;
 
 import java.util.List;
 
